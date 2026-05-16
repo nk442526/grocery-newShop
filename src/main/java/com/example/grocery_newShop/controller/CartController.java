@@ -45,6 +45,43 @@ public class CartController {
         return "redirect:/";
     }
 
+    @GetMapping("/increase/{id}")
+    public String increaseQuantity(@PathVariable int id) {
+
+        for(Product product : HomeController.cart) {
+
+            if(product.getId() == id) {
+
+                product.setQuantity(product.getQuantity() + 1);
+
+                break;
+            }
+        }
+
+        return "redirect:/cart";
+    }
+
+    @GetMapping("/decrease/{id}")
+    public String decreaseQuantity(@PathVariable int id) {
+
+        for(Product product : HomeController.cart) {
+
+            if(product.getId() == id) {
+
+                product.setQuantity(product.getQuantity() - 1);
+
+                if(product.getQuantity() <= 0) {
+
+                    HomeController.cart.remove(product);
+                }
+
+                break;
+            }
+        }
+
+        return "redirect:/cart";
+    }
+
     @GetMapping("/cart")
     public String cartPage(Model model) {
 

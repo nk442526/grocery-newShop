@@ -5,80 +5,96 @@
 
     <title>Your Cart</title>
 
-    <style>
-
-        body {
-            font-family: Arial;
-            text-align: center;
-            background-color: #f5f5f5;
-        }
-
-        .cart-item {
-            background: white;
-            width: 350px;
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px lightgray;
-        }
-
-        img {
-            width: 120px;
-            height: 120px;
-        }
-
-        button {
-            background-color: green;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-    </style>
+    <link rel="stylesheet" href="/css/style.css">
 
 </head>
 
 <body>
 
-<h1>Your Cart</h1>
+<div class="navbar">
 
-<div class="cart-item" th:each="item : ${cartItems}">
+    <div class="logo">
+        Rita Grocery Shop
+    </div>
 
-    <img th:src="${item.image}">
-
-    <h3 th:text="${item.name}"></h3>
-
-    <p>
-        Price: ₹ <span th:text="${item.price}"></span>
-    </p>
-
-    <p>
-        Quantity: <span th:text="${item.quantity}"></span>
-    </p>
-
-    <p>
-        Total: ₹ <span th:text="${item.price * item.quantity}"></span>
-    </p>
+    <div class="cart-button">
+        <a href="/">Home 🏠</a>
+    </div>
 
 </div>
 
-<h2>
-    Grand Total: ₹ <span th:text="${total}"></span>
-</h2>
+<h1 class="page-title">
+    Your Shopping Cart
+</h1>
 
-<br>
+<div class="product-container">
 
-<a href="/checkout">
-    <button>Proceed To Checkout</button>
-</a>
+    <div class="product-card" th:each="item : ${cartItems}">
+
+        <img th:src="${item.image}">
+
+        <h3 th:text="${item.name}"></h3>
+
+        <p class="price">
+            ₹ <span th:text="${item.price}"></span>
+        </p>
+
+        <div style="margin-top:15px;">
+
+            <a th:href="@{'/decrease/' + ${item.id}}">
+
+                <button class="add-btn">
+                    -
+                </button>
+
+            </a>
+
+            <span style="font-size:22px; color:white; margin:15px;">
+
+        <span th:text="${item.quantity}"></span>
+
+    </span>
+
+            <a th:href="@{'/increase/' + ${item.id}}">
+
+                <button class="add-btn">
+                    +
+                </button>
+
+            </a>
+
+        </div>
+
+        <p style="color:white; font-size:18px;">
+            Total:
+            ₹ <span th:text="${item.price * item.quantity}"></span>
+        </p>
+
+    </div>
+
+</div>
+
+<div style="text-align:center; color:white;">
+
+    <h1>
+        Grand Total:
+        ₹ <span th:text="${total}"></span>
+    </h1>
+
+    <br>
+
+    <a href="/checkout">
+
+        <button class="add-btn">
+            Proceed To Checkout
+        </button>
+
+    </a>
+
+</div>
 
 <br><br>
 
-<a href="/">
-    <button>Back To Home</button>
-</a>
-
 </body>
+
 </html>

@@ -1,92 +1,168 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 
 <head>
 
-    <title>Rita Grocery Store</title>
+    <meta charset="UTF-8">
 
-    <style>
+    <title>Rita Grocery Shop</title>
 
-        body {
-            font-family: Arial;
-            background-color: #f5f5f5;
-            text-align: center;
-        }
-
-        h1 {
-            color: green;
-        }
-
-        .product-container {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .product-card {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            width: 200px;
-            box-shadow: 0 0 10px lightgray;
-        }
-
-        img {
-            width: 150px;
-            height: 150px;
-        }
-
-        button {
-            background-color: green;
-            color: white;
-            border: none;
-            padding: 10px;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        a {
-            text-decoration: none;
-        }
-
-    </style>
+    <link rel="stylesheet" href="/css/style.css">
 
 </head>
 
 <body>
 
-<h1>Rita Grocery Store</h1>
+<div style="display:flex; gap:15px; align-items:center;">
 
-<br>
+    <div class="cart-button">
+        <a href="/orders">Orders 📦</a>
+    </div>
 
-<a href="/cart">
-    <button>View Cart</button>
-</a>
+    <div class="cart-button">
+        <a href="/support">Support ☎</a>
+    </div>
 
-<br><br>
+    <div class="cart-button">
+        <a href="/cart">
+            Cart 🛒 (<span th:text="${cartCount}"></span>)
+        </a>
+    </div>
+
+</div>
+
+<h1 class="page-title">
+    Fresh Grocery Products
+</h1>
 
 <div class="product-container">
 
-    <div class="product-card" th:each="product : ${products}">
+    <!-- Rice -->
 
-        <img th:src="${product.image}">
+    <div class="product-card">
 
-        <h3 th:text="${product.name}"></h3>
+        <img src="/images/riceimage.png">
 
-        <p>
-            ₹ <span th:text="${product.price}"></span>
-        </p>
+        <h3>Rice</h3>
 
-        <a th:href="@{'/add-to-cart/' + ${product.id}}">
-            <button>
-                Add To Cart
-            </button>
-        </a>
+        <p class="price">₹50</p>
+
+        <div class="button-section">
+
+            <a href="/add-to-cart/1">
+
+                <button class="add-btn">
+                    Add To Cart
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Milk -->
+
+    <div class="product-card">
+
+        <img src="/images/milkimage.png">
+
+        <h3>Milk</h3>
+
+        <p class="price">₹30</p>
+
+        <div class="button-section">
+
+            <a href="/add-to-cart/2">
+
+                <button class="add-btn">
+                    Add To Cart
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Sugar -->
+
+    <div class="product-card">
+
+        <img src="/images/Sugarimage.png">
+
+        <h3>Sugar</h3>
+
+        <p class="price">₹45</p>
+
+        <div class="button-section">
+
+            <a href="/add-to-cart/3">
+
+                <button class="add-btn">
+                    Add To Cart
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Oil -->
+
+    <div class="product-card">
+
+        <img src="/images/Oilimage.png">
+
+        <h3>Oil</h3>
+
+        <p class="price">₹120</p>
+
+        <div class="button-section">
+
+            <a href="/add-to-cart/4">
+
+                <button class="add-btn">
+                    Add To Cart
+                </button>
+
+            </a>
+
+        </div>
+
+    </div>
+
+    <!-- Biscuit -->
+
+    <div class="product-card">
+
+        <img src="/images/Biscuitimage.png">
+
+        <h3>Biscuit</h3>
+
+        <p class="price">₹20</p>
+
+        <div class="button-section">
+
+            <a href="/add-to-cart/5">
+
+                <button class="add-btn">
+                    Add To Cart
+                </button>
+
+            </a>
+
+        </div>
 
     </div>
 
 </div>
 
+<div class="footer">
+    © 2026 Rita Grocery Shop | Fresh Grocery Delivered
+</div>
+
 </body>
+
 </html>

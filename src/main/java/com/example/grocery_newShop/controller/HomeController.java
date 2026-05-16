@@ -24,8 +24,30 @@ public class HomeController {
         productList.add(new Product(4, "Oil", 120, "/images/Oilimage.png"));
         productList.add(new Product(5, "Biscuit", 20, "/images/Biscuitimage.png"));
 
+        int cartCount = 0;
+
+        for (Product product : cart) {
+            cartCount = cartCount + product.getQuantity();
+        }
+
         model.addAttribute("products", productList);
 
+        model.addAttribute("cartCount", cartCount);
+
         return "home";
+    }
+
+    @GetMapping("/support")
+    public String supportPage() {
+
+        return "support";
+    }
+
+    @GetMapping("/orders")
+    public String orderHistoryPage(Model model) {
+
+        model.addAttribute("orders", cart);
+
+        return "orders";
     }
 }

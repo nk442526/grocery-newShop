@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title>Order History</title>
+
+    <link rel="stylesheet" href="/css/style.css">
+
+</head>
+
+<body>
+
+<div class="navbar">
+
+    <div class="logo">
+        Rita Grocery Shop
+    </div>
+
+    <div class="cart-button">
+        <a href="/">Home 🏠</a>
+    </div>
+
+</div>
+
+<h1 class="page-title">
+    Your Orders 📦
+</h1>
+
+<div class="product-container">
+
+    <div class="product-card" th:each="item : ${orders}">
+
+        <img th:src="${item.image}">
+
+        <h3 th:text="${item.name}"></h3>
+
+        <p class="price">
+            ₹ <span th:text="${item.price}"></span>
+        </p>
+
+        <p style="color:white; font-size:18px;">
+            Quantity Ordered:
+            <span th:text="${item.quantity}"></span>
+        </p>
+
+        <p style="color:#76ff03; font-size:18px;">
+            ✅ Delivered
+        </p>
+
+    </div>
+
+</div>
+
+</body>
+</html>
